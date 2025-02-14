@@ -20,7 +20,7 @@ const responsesByCategory = {
 		response: "OMG, c’est toi ? \nBien sûr que oui ! ❤️",
 	},
 	wait_what: {
-		names: ["Benjamin", "Florian", "Léo", "Camille", "Tom"],
+		names: ["Benjamin", "Florian", "Léo", "Camille", "Tom", "Maurice"],
 		response: "Ça devient sérieux ! \nTu es sûr(e) ? 😏💘",
 	},
 	for_life: {
@@ -28,7 +28,7 @@ const responsesByCategory = {
 		response: "Mais voyons, \nc’est une évidence ! 😍💖",
 	},
 	guys: {
-		names: ["Julien", "Juju", "Kevin", "Sam", "Anthony"],
+		names: ["Julien", "Juju", "Kevin", "Sam", "Anthony", "Victor"],
 		response: "Hahaha... \nbonne blague 😂",
 	},
 	others: {
