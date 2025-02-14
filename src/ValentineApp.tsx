@@ -15,16 +15,17 @@ const responsesByCategory = {
 			"Laëtitia",
 			"Angélina",
 			"Alex",
+			"Hal",
 			"Victoria",
 		],
 		response: "OMG, c’est toi ? \nBien sûr que oui ! ❤️",
 	},
 	wait_what: {
-		names: ["Benjamin", "Florian", "Léo", "Camille", "Tom"],
-		response: "Ça devient sérieux ! \nTu es sûr(e) ? 😏💘",
+		names: ["Benjamin", "Florian", "Laurent", "Léo", "Camille", "Tom"],
+		response: "Ça devient sérieux ! \nTu es sûr·e ? 😏💘",
 	},
 	for_life: {
-		names: ["Poly", "Kadidia", "Gustave", "Bébé", "Chris", "Christophe"],
+		names: ["Poly", "Kadidia", "Gustave", "Bébé", "Chris"],
 		response: "Toi et moi, \nc’est pour la vie ! 😍💖",
 	},
 	guys: {
@@ -58,7 +59,7 @@ const responsesByCategory = {
 
 const getResponse = (name: string): string => {
 	if (!/^[A-ZÀ-ÖØ-Ÿ][a-zà-öø-ÿ]{1,}$/.test(name)) {
-		return "Hmm... Ce n'est pas un vrai prénom, ça ? 😅";
+		return "Hmm... Ce n'est pas un vrai prénom, ça ? 😅 \nAvec une majuscule et plus de lettres peut-être ?";
 	}
 
 	for (const category of Object.keys(responsesByCategory) as Array<
