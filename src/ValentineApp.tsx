@@ -24,7 +24,7 @@ const responsesByCategory = {
 		response: "Ça devient sérieux ! \nTu es sûr(e) ? 😏💘",
 	},
 	for_life: {
-		names: ["Poly", "Gustave", "Bébé"],
+		names: ["Poly", "Kadidia", "Gustave", "Bébé", "Chris", "Christophe"],
 		response: "Toi et moi, \nc’est pour la vie ! 😍💖",
 	},
 	guys: {
