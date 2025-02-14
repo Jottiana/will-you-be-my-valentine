@@ -20,15 +20,15 @@ const responsesByCategory = {
 		response: "OMG, c’est toi ? \nBien sûr que oui ! ❤️",
 	},
 	wait_what: {
-		names: ["Benjamin", "Florian", "Léo", "Camille", "Tom", "Maurice"],
+		names: ["Benjamin", "Florian", "Léo", "Camille", "Tom"],
 		response: "Ça devient sérieux ! \nTu es sûr(e) ? 😏💘",
 	},
 	for_life: {
 		names: ["Poly", "Gustave", "Bébé"],
-		response: "Mais voyons, \nc’est une évidence ! 😍💖",
+		response: "Toi et moi, \nc’est pour la vie ! 😍💖",
 	},
 	guys: {
-		names: ["Julien", "Juju", "Kevin", "Sam", "Anthony", "Victor"],
+		names: ["Julien", "Juju", "Kevin", "Sam", "Anthony", "Victor", "Mala", "Paul", "Salvia"],
 		response: "Hahaha... \nbonne blague 😂",
 	},
 	others: {
@@ -112,7 +112,7 @@ const ValentineApp = () => {
 	};
 
 	return (
-		<div className="relative flex items-center justify-center min-h-screen w-full bg-gradient-to-r from-pink-500 via-red-400 to-red-600 text-white text-center p-4">
+		<div className="relative flex items-center justify-center min-h-[100vh] w-full bg-gradient-to-r from-pink-500 via-red-400 to-red-600 text-white text-center p-4">
 			<div className="absolute top-0 left-0 w-full h-full pointer-events-none">
 				{hearts.map((heart) => (
 					<div
@@ -127,7 +127,7 @@ const ValentineApp = () => {
 				))}
 			</div>
 
-			<div className="bg-white/10 backdrop-blur-lg p-6 md:p-8 lg:p-10 rounded-xl shadow-2xl flex flex-col items-center w-full max-w-lg md:max-w-2xl">
+			<div className="bg-white/20 p-6 md:p-8 lg:p-10 rounded-xl shadow-2xl flex flex-col items-center w-full max-w-lg md:max-w-2xl">
 				<h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 animate-pulse">
 					Will you be my Valentine? 💖
 				</h1>
@@ -161,7 +161,7 @@ const ValentineApp = () => {
 					<button
 						type="button"
 						onClick={createHearts}
-						className="relative overflow-hidden px-6 py-3 sm:px-8 sm:py-4 text-lg md:text-xl font-bold bg-gradient-to-r from-pink-400 to-red-500 text-white rounded-lg shadow-lg hover:scale-110 transition-transform duration-300"
+						className="relative overflow-hidden px-6 py-3 sm:px-8 sm:py-4 text-lg md:text-xl font-bold bg-red-500 bg-gradient-to-r from-pink-400 to-red-500 text-white rounded-lg shadow-lg hover:scale-110 transition-transform duration-300"
 					>
 						Yes 💘
 					</button>
