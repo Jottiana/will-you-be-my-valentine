@@ -28,12 +28,31 @@ const responsesByCategory = {
 		response: "Toi et moi, \nc’est pour la vie ! 😍💖",
 	},
 	guys: {
-		names: ["Julien", "Juju", "Kevin", "Sam", "Anthony", "Victor", "Mala", "Paul", "Salvia", "Thomas"],
+		names: [
+			"Julien",
+			"Juju",
+			"Kevin",
+			"Anthony",
+			"Victor",
+			"Mala",
+			"Malachai",
+			"Paul",
+			"Salvia",
+			"Thomas",
+		],
 		response: "Hahaha... \nbonne blague 😂",
 	},
 	others: {
 		names: ["Beyoncé"],
 		response: "Je vais y réfléchir... \nmais tu as une chance ! 🤔💞",
+	},
+	nope: {
+		names: ["Jessy", "Sam", "Samvel"],
+		response: "Nope 💀",
+	},
+	me_myself_and_i: {
+		names: ["Agnès"],
+		response: "Vivement que tu aies le don d'ubiquité 😘",
 	},
 };
 
