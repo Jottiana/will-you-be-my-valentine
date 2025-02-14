@@ -28,7 +28,7 @@ const responsesByCategory = {
 		response: "Toi et moi, \nc’est pour la vie ! 😍💖",
 	},
 	guys: {
-		names: ["Julien", "Juju", "Kevin", "Sam", "Anthony", "Victor", "Mala", "Paul", "Salvia"],
+		names: ["Julien", "Juju", "Kevin", "Sam", "Anthony", "Victor", "Mala", "Paul", "Salvia", "Thomas"],
 		response: "Hahaha... \nbonne blague 😂",
 	},
 	others: {
