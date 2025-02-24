@@ -5,36 +5,30 @@
 		transform: translateY(0) scale(1);
 		opacity: 1;
 	}
-	50% {
-		transform: translateY(-50px) scale(1.2);
-		opacity: 0.9;
-	}
 	100% {
-		transform: translateY(-100px) scale(1);
+		transform: translateY(-270px) scale(1.1);
 		opacity: 0;
 	}
 }
 
 .heart {
 	position: absolute;
-	width: 32px;
-	height: 32px;
+	width: var(--size, 30px);
+	height: var(--size, 30px);
 	background-color: red;
 	clip-path: path(
 		"M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
 	);
-	animation: heartFloat 1.5s ease-out forwards;
+	animation: heartFloat var(--speed, 3s) ease-out forwards;
 	filter: blur(0px);
+	opacity: 0.9;
+	will-change: transform, opacity;
 }
 
 .heart:nth-child(even) {
-	transform: scale(1.5) rotate(20deg);
+	transform: scale(1.2) rotate(20deg);
 }
 
 .heart:nth-child(odd) {
 	transform: scale(0.9) rotate(-20deg);
-}
-
-.heart {
-	box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
 }

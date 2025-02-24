@@ -18,15 +18,15 @@ const responsesByCategory = {
 			"Hal",
 			"Victoria",
 		],
-		response: "OMG, c’est toi ? \nBien sûr que oui ! ❤️",
+		response: "OMG, is that you?! 🤩 Of course yes! 💘",
 	},
 	wait_what: {
 		names: ["Benjamin", "Florian", "Laurent", "Léo", "Camille", "Tom"],
-		response: "Ça devient sérieux ! \nTu es sûr·e ? 😏💘",
+		response: "Oh really? 💘 Are you sure? 😏",
 	},
 	for_life: {
 		names: ["Poly", "Kadidia", "Gustave", "Bébé", "Chris"],
-		response: "Toi et moi, \nc’est pour la vie ! 😍💖",
+		response: "You and me 💖 for life! 😍",
 	},
 	guys: {
 		names: [
@@ -41,11 +41,12 @@ const responsesByCategory = {
 			"Salvia",
 			"Thomas",
 		],
-		response: "Hahaha... \nbonne blague 😂",
+		response: "Hahaha... Just kidding, right? 😂",
 	},
 	others: {
 		names: ["Beyoncé"],
-		response: "Je vais y réfléchir... \nmais tu as une chance ! 🤔💞",
+		response:
+			"Let me think... \n Just kidding, I've been waiting for you for so long! 💞",
 	},
 	nope: {
 		names: ["Jessy", "Sam", "Samvel"],
@@ -53,13 +54,13 @@ const responsesByCategory = {
 	},
 	me_myself_and_i: {
 		names: ["Agnès"],
-		response: "Vivement que tu aies le don d'ubiquité 😘",
+		response: "Can't wait until you get the gift of ubiquity! 😘",
 	},
 };
 
 const getResponse = (name: string): string => {
-	if (!/^[A-ZÀ-ÖØ-Ÿ][a-zà-öø-ÿ]{1,}$/.test(name)) {
-		return "Hmm... Ce n'est pas un vrai prénom, ça ? 😅 \nAvec une majuscule et plus de lettres peut-être ?";
+	if (!/^[A-ZÀ-ÖØ-Ÿ][a-zà-öø-ÿ]+(?:[- ][A-ZÀ-ÖØ-Ÿ][a-zà-öø-ÿ]+)*$/.test(name)) {
+		return "Hmm... Isn't that a real name? 😅 \n With a capital letter and more letters, perhaps?";
 	}
 
 	for (const category of Object.keys(responsesByCategory) as Array<
@@ -70,7 +71,7 @@ const getResponse = (name: string): string => {
 		}
 	}
 
-	return "On apprend à se connaître d’abord ? 😊";
+	return "Let's get to know each other first? 😊";
 };
 
 const ValentineApp = () => {
@@ -83,22 +84,10 @@ const ValentineApp = () => {
 		{ id: number; x: number; y: number; color: string }[]
 	>([]);
 
-	const handleSubmit = () => {
-		if (name.trim() === "") {
-			setError("Merci d'entrer un prénom !");
-			return;
-		}
-
-		setError(null);
-		setSubmittedName(name);
-		setResponse(getResponse(name));
-		setName("");
-	};
-
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === "Enter") {
 			e.preventDefault();
-			handleSubmit();
+			createHearts(e as unknown as React.MouseEvent<HTMLButtonElement>);
 		}
 	};
 
@@ -110,25 +99,47 @@ const ValentineApp = () => {
 		setNoPosition({ x: newX, y: newY });
 	};
 
-	const createHearts = (event: React.MouseEvent<HTMLButtonElement>) => {
-		const buttonRect = event.currentTarget.getBoundingClientRect();
+	const createHearts = (
+		_event:
+			| React.MouseEvent<HTMLButtonElement>
+			| React.KeyboardEvent<HTMLInputElement>,
+	) => {
+		const trimmedName = name.trim();
+
+		if (trimmedName === "") {
+			setError("Please enter a first name!");
+			return;
+		}
+
+		setError(null);
+		setSubmittedName(trimmedName);
+		const generatedResponse = getResponse(trimmedName);
+		setResponse(generatedResponse);
+
+		const buttonRect = document
+			.querySelector("button")
+			?.getBoundingClientRect();
+		if (!buttonRect) return;
+
 		const btnX = buttonRect.left + buttonRect.width / 2;
 		const btnY = buttonRect.top;
 
 		const colors = ["#ff4d6d", "#ff85a1", "#ffadc8", "#c75fff"];
 
-		const newHearts = Array.from({ length: 10 }).map((_, index) => ({
+		const newHearts = Array.from({ length: 15 }).map((_, index) => ({
 			id: Date.now() + index,
-			x: btnX + (Math.random() * 60 - 30),
-			y: btnY + (Math.random() * 30 - 15),
+			x: btnX + (Math.random() * 120 - 60),
+			y: btnY + (Math.random() * 50 - 25),
+			size: Math.random() * 15 + 20,
+			speed: Math.random() * 2 + 1.5,
 			color: colors[Math.floor(Math.random() * colors.length)],
 		}));
 
 		setHearts((prev) => [...prev, ...newHearts]);
 
 		setTimeout(() => {
-			setHearts((prev) => prev.slice(10));
-		}, 1000);
+			setHearts((prev) => prev.slice(15));
+		}, 2000);
 	};
 
 	return (
@@ -152,36 +163,39 @@ const ValentineApp = () => {
 					Will you be my Valentine? 💖
 				</h1>
 
+				<label htmlFor="name-input" className="sr-only">
+					Enter your first name
+				</label>
 				<input
 					type="text"
-					placeholder="Ton prénom ici..."
+					placeholder="Your name here..."
 					value={name}
-					onChange={(e) => setName(e.target.value)}
+					onChange={(e) => {
+						if (e.target.value.startsWith(" ")) return;
+						setName(e.target.value);
+					}}
 					onKeyDown={handleKeyDown}
-					className="mb-4 px-4 py-2 sm:py-3 w-full max-w-xs rounded-lg border border-white text-black shadow-md focus:outline-none focus:ring-2 focus:ring-red-300"
+					className="mb-4 px-4 py-2 sm:py-3 w-full max-w-xs rounded-lg border border-white text-black shadow-md focus:outline-none focus:ring-2 focus:ring-red-300 placeholder-gray-800"
 				/>
-				<button
-					type="submit"
-					onClick={handleSubmit}
-					className="mb-6 px-6 py-2 sm:py-3 w-full max-w-xs bg-white text-red-600 font-semibold rounded-lg shadow-lg hover:bg-red-200 transition transform hover:scale-105"
-				>
-					Valider
-				</button>
 
 				{submittedName && response && (
-					<p className="whitespace-pre-wrap mt-4 text-lg md:text-xl font-semibold bg-white/20 px-4 py-2 sm:px-6 sm:py-3 rounded-lg shadow-md">
+					<p
+						role="alert"
+						className="whitespace-pre-wrap mt-4 text-lg md:text-xl font-semibold bg-white/20 px-4 py-2 sm:px-6 sm:py-3 rounded-lg shadow-md"
+					>
 						{response}
 					</p>
 				)}
 				{error && (
-					<p className="mt-4 text-lg text-red-400 font-semibold">{error}</p>
+					<p className="mt-4 text-lg text-gray-600 font-semibold">{error}</p>
 				)}
 
 				<div className="mt-6 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center relative w-full">
 					<button
 						type="button"
 						onClick={createHearts}
-						className="relative overflow-hidden px-6 py-3 sm:px-8 sm:py-4 text-lg md:text-xl font-bold bg-red-500 bg-gradient-to-r from-pink-400 to-red-500 text-white rounded-lg shadow-lg hover:scale-110 transition-transform duration-300"
+						className="relative overflow-hidden px-6 py-3 sm:px-8 sm:py-4 text-lg md:text-xl font-bold bg-red-500 bg-gradient-to-r from-pink-400 to-red-500 text-white rounded-lg shadow-lg hover:scale-110 transition-transform duration-400"
+						aria-label="Yes, I accept"
 					>
 						Yes 💘
 					</button>
@@ -190,6 +204,8 @@ const ValentineApp = () => {
 						type="button"
 						className="px-6 py-3 sm:px-8 sm:py-4 text-lg md:text-xl font-bold bg-purple-500 text-white rounded-lg shadow-lg hover:bg-purple-400 transition-transform duration-300"
 						onMouseEnter={moveNoButton}
+						onFocus={moveNoButton}
+						aria-label="No, I refuse"
 						style={{
 							transform: `translate(${noPosition.x}px, ${noPosition.y}px)`,
 						}}

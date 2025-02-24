@@ -1,23 +1,45 @@
-# 💘 Saint-Valentin - Will You Be My Valentine? 💘
+# 💘 Valentine's Day - Will You Be My Valentine? 💘
 
-Ce projet est une mono-page interactive développée avec **React, Vite, TypeScript et TailwindCSS**, proposant une question romantique :  
+This project is an interactive single-page application developed with **React, Vite, TypeScript, and TailwindCSS**, featuring a romantic question:  
 **"Will you be my Valentine?"**  
 
-✨ Un bouton "No" insaisissable évite le clic.  
-✨ Un champ de texte permet d’entrer un prénom pour afficher une réponse personnalisée.  
+## 💡 Features
 
-## 🛠 Stack technique
+- 🎭 **Dynamic Responses** → Enter your name and get a personalized answer!  
+- 🏃 **The "No" Button Escapes** → You can't say no that easily!  
+- ❤️ **Floating Hearts Animation** → When you say "Yes", little hearts pop up to celebrate your love!  
+- 🌐 **Responsive Design** → Works on desktop & mobile.   
 
-- **Front-end :** React, Vite, TypeScript, TailwindCSS  
-- **Déploiement :** GH Pages
+## 🛠 Tech Stack
+
+- **Front-end:** React, Vite, TypeScript, TailwindCSS  
+- **Deployment:** GitHub Pages  
 
 ---
 
-## 🚀 Installation et lancement du projet
+## 🔗 Live Demo
 
-### 1️⃣ Cloner le projet
+👉 [Try it here!](https://jottiana.github.io/will-you-be-my-valentine/)
 
+
+---
+
+## 🚀 Installation and Running the Project
+
+### 1️⃣ Clone the repository
 ```bash
 git clone https://github.com/Jottiana/will-you-be-my-valentine.git
 cd will-you-be-my-valentine
 ```
+### 2️⃣ Install dependencies
+`npm install`
+
+### 3️⃣ Start the development server
+`npm run dev`
+The app will be available at http://localhost:5173 (default Vite port).
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
